@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OpinionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/opinion', function () {
+        return view('opinion');
+    })->name('opinion');
+    Route::resource('/opinion', OpinionController::class);
+    // Route::get('opinionnew', Opinions::class)->name('opinionnew');
+
 });

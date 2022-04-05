@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+       [ OpinionSeeder::class];
+
         // \App\Models\User::factory(10)->create();
     }
 }

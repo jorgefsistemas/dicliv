@@ -17,8 +17,9 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased ">
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -27,7 +28,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
@@ -43,4 +44,26 @@
 
         @livewireScripts
     </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+         $('.show_confirm').click(function(event) {
+              var form =  $(this).closest("form");
+              var name = $(this).data("name");
+              event.preventDefault();
+              swal({
+                  title: `Seguro que desea eliminar este dictamen?`,
+                  text: "Favor de estar seguro de confirmar, los datos se perderan permanentemente.",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  form.submit();
+                }
+              });
+          });
+
+    </script>
 </html>
