@@ -15,18 +15,10 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    {{-- <x-jet-nav-link href="{{ route('altadictamen') }}" :active="request()->routeIs('altadictamen')">
-                        {{ __('Alta de Dictamenenes') }}
-                    </x-jet-nav-link> --}}
                     <x-jet-nav-link href="{{ route('opinion.index') }}" :active="request()->routeIs('opinion.index')">
                         {{ __('Listado de Dictamenes') }}
                     </x-jet-nav-link>
-                     {{-- <x-jet-nav-link href="{{ route('creartt') }}" :active="request()->routeIs('creartt')">
-                        {{ __('Listado de Dictamenes Livewire') }}
-                    </x-jet-nav-link> --}}
-                    {{-- <x-jet-nav-link href="{{ route('opinionnew') }}" :active="request()->routeIs('opinionnew')">
-                        {{ __('Listado de opinionnew Livewire') }}
-                    </x-jet-nav-link> --}}
+
                 </div>
             </div>
 
