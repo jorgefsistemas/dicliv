@@ -41,19 +41,20 @@ class OpinionSeeder extends Seeder
         // \App\Models\Team::factory(1)->create();
         // \App\Models\User::factory(1)->withPersonalTeam()->create();
         /// \App\Models\User::factory(1)->create();
-        Team::create([
-            "name" =>"Admin",
-            "user_id"=>
+
+        // Team::create([
+        //     "name" =>"Admin",
+        //     "user_id"=>
+
+
+
             User::create([
                 "name"=> "admin",
                 "email"=>"admin@semovi.gob.mx",
-                "password"=>bcrypt("password"),
+                "password"=>bcrypt("12341234"),
                 "email_verified_at" => now(),
-                "current_team_id"=>1 ,
-                "remember_token" => Str::random(10)])->id,
-            'personal_team' => true
-
-        ]);
+                "current_team_id"=>1,
+                "remember_token" => Str::random(10)]);
 
 
     }
