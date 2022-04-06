@@ -14,7 +14,7 @@ foreach ($array as &$valor) {
  $opciones=[1,2,3];
   @endphp --}}
 
-  <div class="w-full overflow-hidden ">
+  <div class="w-full overflow-hidden">
     <form action="{{ route('opinion.update', $idEdit->id ) }}" method="POST">
       {!! csrf_field() !!}
       @method('PUT')
