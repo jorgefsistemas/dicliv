@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            OpinionSeeder::class ]);
+            OpinionSeeder::class,
+            PermissionTableSeeder::class,
+            // CreateAdminUserSeeder::class,
+        ]);
     }
 }

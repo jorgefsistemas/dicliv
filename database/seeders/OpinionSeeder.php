@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Team;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class OpinionSeeder extends Seeder
 {
@@ -48,14 +50,21 @@ class OpinionSeeder extends Seeder
 
 
 
-            User::create([
-                "name"=> "admin",
+        $user = User::create([
+                "name"=> "Admin",
                 "email"=>"admin@semovi.gob.mx",
                 "password"=>bcrypt("12341234"),
                 "email_verified_at" => now(),
                 "current_team_id"=>1,
                 "remember_token" => Str::random(10)]);
 
+                $role = Role::create(['name' => 'Admin']);
+
+                $permissions = Permission::pluck('id','id')->all();
+
+                $role->syncPermissions($permissions);
+
+                $user->assignRole([$role->id]);
 
     }
 }

@@ -3,16 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
 
 
 class Opinion extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Notifiable;
+    use HasRoles;
 
     // protected $appends = ['creator_user'];
 

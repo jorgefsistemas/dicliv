@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OpinionController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +22,8 @@ use App\Http\Controllers\OpinionController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -31,5 +38,8 @@ Route::middleware([
     })->name('opinion');
     Route::resource('/opinion', OpinionController::class);
     // Route::get('opinionnew', Opinions::class)->name('opinionnew');
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('products', ProductController::class);
 
 });
