@@ -1,10 +1,12 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -27,6 +29,8 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
+        $user_roles= User::with('permissions')->get();
+        dd($user_roles);
         $roles = Role::orderBy('id','DESC')->paginate(5);
         return view('roles.index',compact('roles'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
