@@ -1,13 +1,16 @@
 <?php
 
+use GuzzleHttp\Client;
 namespace App\Http\Controllers;
-use App\Providers\RouteServiceProvider;
-
 use App\Models\Opinion;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Providers\RouteServiceProvider;
 use App\Repositories\OpinionRepository;
 use App\Http\Requests\StoreOpinionRequest;
 use App\Http\Requests\UpdateOpinionRequest;
+
 
 class OpinionController extends Controller
 {
@@ -25,7 +28,7 @@ class OpinionController extends Controller
      */
     public function index()
     {
-        $data = Opinion::orderBy('id', 'ASC')->paginate(10);
+        $data = Opinion::orderBy('id', 'DESC')->paginate(10);
         return view('opinion')->with([
             'data'=>$data,
             ]);
@@ -179,5 +182,86 @@ class OpinionController extends Controller
         return redirect()->route('opinion.index')
             ->with('success', 'Dictamen eliminado Exitosamente');
 
+    }
+    public function apiWithoutKey()
+    {
+        //dd("Llegando a ruta api");
+
+        //$client = new Client(); //GuzzleHttp\Client
+        $response = Http::get('https://api.github.com/users/kingsconsult/repos');
+
+        //$url = "https://api.github.com/users/kingsconsult/repos";
+
+
+        // $response = $client->request('GET', $url, [
+        //     'verify'  => false,
+        // ]);
+
+        $responseBody = json_decode($response->getBody());
+
+        return view('projects.apiwithoutkey', compact('responseBody'));
+    }
+
+    public function apiWithKey()
+    {
+
+        //dd("Llegando a apiWithKey");
+
+        //$client = new Client();
+        $response = Http::get('https://dev.to/api/articles/me/published');
+
+        //$url = "https://dev.to/api/articles/me/published";
+
+        $params = [
+            //If you have any Params Pass here
+        ];
+
+        $headers = [
+            'api-key' => 'k3Hy5qr73QhXrmHLXhpEh6CQ'
+        ];
+
+        // $response = $client->request('GET', $url, [
+        //     // 'json' => $params,
+        //     'headers' => $headers,
+        //     'verify'  => false,
+        // ]);
+
+        // $responseBody = json_decode($response->getBody());
+
+        // return view('projects.apiwithkey', compact('responseBody'));
+        return view('projects.apiwithkey');
+
+
+    }
+    public function apistore()
+    {
+    	$response = Http::post('http://jsonplaceholder.typicode.com/posts', [
+    				'title' => 'This is test from ItSolutionStuff.com',
+    				'body' => 'This is test from ItSolutionStuff.com as body',
+    			]);
+
+    	dd($response->successful());
+    }
+    public function apiindex()
+    {
+    	// $response = Http::dd()->get('http://jsonplaceholder.typicode.com/posts');
+    	$response = Http::get('http://jsonplaceholder.typicode.com/posts');
+
+    	$jsonData = $response->json();
+
+    	echo "<pre> Body:";
+    	print_r($response->body());
+        echo "<pre> status:";
+    	print_r($response->status());
+    	echo "<br/> ok:";
+    	print_r($response->ok());
+        echo "<br/> successful:";
+        print_r($response->successful());
+        echo "<br/> serverError:";
+        print_r($response->serverError());
+        echo "<br/> clientError:";
+        print_r($response->clientError());
+        echo "<br/> headers:";
+        print_r($response->headers());
     }
 }

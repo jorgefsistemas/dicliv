@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,4 +43,13 @@ Route::middleware([
     Route::resource('users', UserController::class);
     Route::resource('products', ProductController::class);
 
+    Route::prefix('projects')->group(function () {
+    Route::get('apiwithoutkey', [OpinionController::class, 'apiWithoutKey'])->name('apiWithoutKey');
+    Route::get('apiwithkey', [OpinionController::class, 'apiWithKey'])->name('apiWithKey');
+    Route::get('posts/store', [OpinionController::class, 'apistore']);
+    Route::get('posts', [OpinionController::class, 'apiindex']);
+
 });
+
+});
+

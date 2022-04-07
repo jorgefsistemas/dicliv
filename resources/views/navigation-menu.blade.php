@@ -18,6 +18,10 @@
                     <x-jet-nav-link href="{{ route('opinion.index') }}" :active="request()->routeIs('opinion.index')">
                         {{ __('Listado de Dictamenes') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('apiWithoutKey') }}" :active="request()->routeIs('apiWithoutKey')">
+                        {{ __('Api Test') }}
+                        api.github.com/users/kingsconsult/repos
+                    </x-jet-nav-link>
 
                 </div>
             </div>
